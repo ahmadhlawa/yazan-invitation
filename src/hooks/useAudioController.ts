@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { INVITATION } from '../invitation.config';
 
 const FADE_STEP_MS = 90;
+const AUDIO_START_SECONDS = 13;
 
 /**
  * يتحكم بالموسيقى: تشغيل بعد تفاعل المستخدم فقط، مع تلاشٍ تدريجي
@@ -26,6 +27,7 @@ export function useAudioController(onError?: () => void) {
     if (!el) return;
 
     clearFade();
+    if (el.currentTime < AUDIO_START_SECONDS) el.currentTime = AUDIO_START_SECONDS;
     // نستأنف من الموضع الحالي — لا نعيد ضبط currentTime
     el.volume = 0;
     try {

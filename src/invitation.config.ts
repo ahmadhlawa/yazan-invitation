@@ -42,7 +42,7 @@ export const INVITATION = {
     mapsUrl: 'https://maps.app.goo.gl/edQx9KWGZemjYT4P7', buttonLabel: 'فتح الموقع على الخريطة',
   },
   closing: { primary: 'بارك الله لهما وبارك عليهما', secondary: 'حضوركم يسعدنا ويكمل فرحتنا' },
-  audio: { src: '/audio/wedding-music.mpeg', playLabel: 'تشغيل الصوت', pauseLabel: 'إيقاف الصوت', targetVolume: 0.75 },
+  audio: { src: '/audio/wedding-music.mp3', playLabel: 'تشغيل الصوت', pauseLabel: 'إيقاف الصوت', targetVolume: 0.75 },
   share: { buttonLabel: 'مشاركة الدعوة', whatsappLabel: 'المشاركة عبر واتساب', copyLabel: 'نسخ الرابط', message: `نتشرف بدعوتكم لمشاركتنا فرحة إشهار خطوبة ${couple}` },
   icsTitle: `إشهار خطوبة ${couple}`,
   toasts: { calendarOk: 'تم إنشاء ملف الموعد', calendarFail: 'تعذر إنشاء ملف الموعد', copyOk: 'تم نسخ رابط الدعوة', copyFail: 'انسخ الرابط من شريط المتصفح', audioFail: 'تعذر تشغيل الصوت' },

@@ -136,7 +136,11 @@ export default function App() {
 
         {/* preload=metadata: لا نُنزّل المقطع كاملًا قبل الحاجة، ولا نزاحم
             أصول البوّابة على عرض النطاق لحظة الضغط */}
-        <audio ref={audioRef} src={INVITATION.audio.src} preload="metadata" loop />
+        <audio ref={audioRef} src={INVITATION.audio.src} preload="metadata"
+          onEnded={(event) => {
+            event.currentTarget.currentTime = 13;
+            void event.currentTarget.play();
+          }} />
       </div>
 
     </div>
