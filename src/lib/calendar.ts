@@ -30,16 +30,12 @@ export function buildMonthCells(): DayCell[] {
 const escapeIcs = (value: string) =>
   value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
 
-const day = (date: string) => date.replace(/-/g, '');
-const stamp = (date: string, time: string) => `${day(date)}T${time.replace(':', '')}00`;
-
-/**
- * سطرا البداية والنهاية بساعة عائمة (بلا منطقة زمنية): الموعد يُعرض
- * ٦:٠٠ مساءً في تقويم الضيف كما هو مكتوب في الدعوة.
- */
+/** Export the same absolute event time used by the countdown. */
 function periodLines(): [string, string] {
-  const { date, start, end } = INVITATION.wedding;
-  return [`DTSTART:${stamp(date, start)}`, `DTEND:${stamp(date, end)}`];
+  const { date, dateTime, end } = INVITATION.wedding;
+  const offset = dateTime.slice(-6);
+  const utcStamp = (value: string) => new Date(value).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  return [`DTSTART:${utcStamp(dateTime)}`, `DTEND:${utcStamp(`${date}T${end}:00${offset}`)}`];
 }
 
 /** ينشئ ملف ICS في المتصفح دون أي خادم، ويشغّل تنزيله. */
@@ -59,8 +55,8 @@ export function downloadWeddingIcs(): boolean {
     dtEnd,
     `SUMMARY:${escapeIcs(INVITATION.icsTitle)}`,
     `LOCATION:${escapeIcs(venue.name)}`,
-    `DESCRIPTION:${escapeIcs(`موقع القاعة: ${venue.mapsUrl}`)}`,
-    `GEO:${venue.latitude};${venue.longitude}`,
+    `DESCRIPTION:${escapeIcs(`موقع المناسبة: ${venue.mapsUrl}`)}`,
+    ...(venue.latitude && venue.longitude ? [`GEO:${venue.latitude};${venue.longitude}`] : []),
     'END:VEVENT',
     'END:VCALENDAR',
   ].join('\r\n');

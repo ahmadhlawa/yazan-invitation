@@ -12,7 +12,7 @@ export interface InvitationEvent {
 }
 
 const EVENT_DATE = '2026-10-02';
-const CALENDAR_TIME = '18:00'; // Temporary calendar time; replace when confirmed.
+const CALENDAR_TIME = '18:00';
 const couple = 'يزن واستبرق';
 
 export const INVITATION = {
@@ -28,8 +28,8 @@ export const INVITATION = {
   invitationLine: 'بكل المحبة نتشرف بدعوتكم لمشاركتنا فرحتنا',
   eventsHeading: 'تفاصيل المناسبة',
   events: [{
-    id: 'engagement', icon: 'rings', weekday: 'الجمعة', date: '2 / 10', title: 'إشهار خطوبة يزن واستبرق',
-    place: 'بمنزل والد العروس الكائن في منطقة وادي الهرية', details: ['الساعة سيتم تحديدها لاحقًا'], primary: true,
+    id: 'engagement', icon: 'rings', weekday: 'الجمعة', date: '2 / 10 / 2026', title: 'إشهار خطوبة يزن واستبرق',
+    place: 'وادي الهريّة – دخلة مصنع الأمل – منزل والد العروس', details: ['الساعة 6:00 مساءً'], primary: true,
   }] satisfies InvitationEvent[] as InvitationEvent[],
   calendar: {
     year: 2026, month: 10, monthName: 'أكتوبر', monthLabel: 'أكتوبر 2026', softHighlight: [], mainDay: 2,
@@ -38,7 +38,7 @@ export const INVITATION = {
   wedding: { date: EVENT_DATE, start: CALENDAR_TIME, end: '21:00', dateTime: `${EVENT_DATE}T${CALENDAR_TIME}:00+03:00`, timeZone: 'Asia/Hebron' },
   countdown: { heading: 'باقي على فرحتنا', labels: { days: 'يوم', hours: 'ساعة', minutes: 'دقيقة', seconds: 'ثانية' }, doneMessage: 'تمت الفرحة بحمد الله' },
   venue: {
-    heading: 'موقع المناسبة', name: 'بمنزل والد العروس الكائن في منطقة وادي الهرية', latitude: '', longitude: '',
+    heading: 'موقع المناسبة', name: 'وادي الهريّة – دخلة مصنع الأمل – منزل والد العروس', latitude: '', longitude: '',
     mapsUrl: 'https://maps.app.goo.gl/edQx9KWGZemjYT4P7', buttonLabel: 'فتح الموقع على الخريطة',
   },
   closing: { primary: 'بارك الله لهما وبارك عليهما', secondary: 'حضوركم يسعدنا ويكمل فرحتنا' },

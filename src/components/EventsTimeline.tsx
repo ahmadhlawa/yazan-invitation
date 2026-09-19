@@ -13,7 +13,7 @@ function EventScene({ event, index }: { event: InvitationEvent; index: number })
       <span className="event-scene__sprig" aria-hidden="true" />
       <div className="event-scene__medallion" aria-hidden="true"><EventGlyph name={event.icon} size={29} /></div>
       <p className="event-scene__weekday">{event.weekday}</p>
-      <time className="event-scene__date" dateTime={event.date.split(' / ').reverse().join('-')}>{event.date}</time>
+      <time className="event-scene__date" dateTime={INVITATION.wedding.date} dir="ltr">{event.date}</time>
       <h3>{event.title}</h3>
       <p className="event-scene__place">{event.place}</p>
       {event.details.map(line => <p className="event-scene__detail" key={line}>{line}</p>)}

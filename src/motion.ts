@@ -6,7 +6,7 @@
  */
 
 /** مدّة تسلسل فتح البوّابة كاملًا — يطابق أطول تأخير في .gate داخل invitation.css */
-export const GATE_OPEN_MS = 5400;
+export const GATE_OPEN_MS = 4700;
 
 /** مدّة مختصرة عند تفضيل تقليل الحركة */
 export const GATE_OPEN_REDUCED_MS = 320;
