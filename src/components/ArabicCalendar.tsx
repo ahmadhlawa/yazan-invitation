@@ -1,10 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { INVITATION } from '../invitation.config';
 import { buildMonthCells, downloadWeddingIcs } from '../lib/calendar';
-import { Flourish } from '../ornaments/Ornament';
 import { Reveal, VIEWPORT } from './Reveal';
 import { WoodCard } from './WoodCard';
 import { BrassButton } from './BrassButton';
+import { SectionDivider } from './SectionDivider';
 
 interface Props {
   onResult: (ok: boolean) => void;
@@ -26,14 +26,7 @@ export function ArabicCalendar({ onResult }: Props) {
             </h2>
           </Reveal>
 
-          <Reveal
-            kind="draw"
-            delay={0.18}
-            duration={0.85}
-            style={{ display: 'flex', justifyContent: 'center', margin: '2px 0 14px', opacity: 0.8 }}
-          >
-            <Flourish width={170} />
-          </Reveal>
+          <SectionDivider />
 
           {/* ── أيام الأسبوع ── */}
           <Reveal kind="rise" delay={0.24} duration={0.6}>

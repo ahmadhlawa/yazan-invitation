@@ -1,9 +1,7 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { INVITATION } from './invitation.config';
-import { GateEntrance } from './components/GateEntrance';
 import { HillHero } from './components/HillHero';
-import { InvitationLine } from './components/InvitationLine';
 import { WeddingCountdown } from './components/WeddingCountdown';
 import { EventsTimeline } from './components/EventsTimeline';
 import { ArabicCalendar } from './components/ArabicCalendar';
@@ -12,7 +10,6 @@ import { ShareInvitation } from './components/ShareInvitation';
 import { InvitationClosing } from './components/InvitationClosing';
 import { AudioController } from './components/AudioController';
 import { Toast } from './components/Toast';
-import { AmbientBirdLayer } from './components/ThemeArt';
 import { GATE_OPEN_MS, GATE_OPEN_REDUCED_MS } from './motion';
 import { useAudioController } from './hooks/useAudioController';
 import { useToast } from './hooks/useToast';
@@ -37,7 +34,6 @@ const InvitationBody = memo(function InvitationBody({
 }: ContentProps) {
   return (
     <main className="content">
-      <InvitationLine />
       <WeddingCountdown />
       <EventsTimeline />
       <ArabicCalendar onResult={onCalendar} />
@@ -125,10 +121,9 @@ export default function App() {
     <div lang="ar" dir="rtl" className="stage" data-open={opened || undefined}>
       {/* ── لوح الدعوة المركزي بعرض هاتف ── */}
       <div className="shell">
-        {openDone && <AmbientBirdLayer />}
 
         {/* المشهد الثالث: التلّة والأسماء — يبدأ مع انفتاح البوّابة */}
-        <HillHero play={opened} />
+        <HillHero open={opened} done={openDone} onOpen={openGate} />
 
         <InvitationBody
           onCalendar={handleCalendar}
@@ -144,7 +139,6 @@ export default function App() {
         <audio ref={audioRef} src={INVITATION.audio.src} preload="metadata" loop />
       </div>
 
-      <GateEntrance open={opened} done={openDone} onOpen={openGate} />
     </div>
   );
 }

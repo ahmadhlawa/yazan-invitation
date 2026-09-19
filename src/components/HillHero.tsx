@@ -1,25 +1,45 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { BirdFlock, BotanicalGarland, GoldDivider, THEME_ASSET } from './ThemeArt';
+import { INVITATION } from '../invitation.config';
 
-interface Props { play: boolean }
+interface Props { open: boolean; done: boolean; onOpen: () => void }
 
-export function HillHero({ play }: Props) {
+const EASE = [0.22, 0.61, 0.36, 1] as const;
+
+export function HillHero({ open, done, onOpen }: Props) {
   const reduced = useReducedMotion();
-  const initial = reduced ? { opacity: 0 } : { opacity: 0, y: 24 };
+  const reveal = (delay: number) => ({
+    initial: { opacity: 0, y: reduced ? 0 : 14 },
+    animate: open ? { opacity: 1, y: 0 } : { opacity: 0, y: reduced ? 0 : 14 },
+    transition: { duration: reduced ? .15 : .9, delay: reduced ? 0 : delay, ease: EASE },
+  });
+
   return (
-    <section className="storybook-hero" aria-labelledby="hero-names">
-      <BotanicalGarland className="storybook-hero__garland" />
-      <BirdFlock className="storybook-hero__flock" />
-      <motion.div className="storybook-hero__words" initial={initial} animate={play ? { opacity: 1, y: 0 } : undefined}
-        transition={{ duration: reduced ? .2 : 1.1, delay: reduced ? 0 : 1.65, ease: [0.16, 1, 0.3, 1] }}>
-        <p className="storybook-hero__blessing"><span>بارك الله لهما وبارك عليهما</span><span>وجمع بينهما في الخير</span></p>
-        <h1 id="hero-names" className="storybook-hero__names" dir="ltr"><span>yousef <i>&amp;</i></span><span>ghazal</span></h1>
-        <p className="storybook-hero__names-ar">يوسف وغزل</p>
-        <GoldDivider className="storybook-hero__divider" />
-      </motion.div>
-      <motion.img className="storybook-hero__couple" src={`${THEME_ASSET}/08-couple-meadow.webp`} alt="" aria-hidden="true"
-        width="1120" height="630" initial={reduced ? { opacity: 0 } : { opacity: 0, y: 50, scale: 1.04 }}
-        animate={play ? { opacity: 1, y: 0, scale: 1 } : undefined} transition={{ duration: reduced ? .2 : 1.5, delay: .25, ease: [0.16, 1, 0.3, 1] }} />
+    <section className="entrance-hero" data-open={open || undefined} data-done={done || undefined} aria-labelledby="hero-names">
+      <div className="entrance-hero__curtain" aria-hidden="true" />
+      <div className="entrance-hero__light" aria-hidden="true" />
+      <img className="entrance-hero__chandelier" src="/assets/yazan-theme/chandelier.png" alt="" aria-hidden="true" />
+      <img className="entrance-hero__flowers entrance-hero__flowers--left" src="/assets/yazan-theme/flowers-left.png" alt="" aria-hidden="true" />
+      <img className="entrance-hero__flowers entrance-hero__flowers--right" src="/assets/yazan-theme/flowers-right.png" alt="" aria-hidden="true" />
+      <div className="entrance-hero__copy">
+        <motion.p className="entrance-hero__blessing" {...reveal(1.35)}>{INVITATION.blessing}</motion.p>
+        <motion.div className="entrance-hero__families" {...reveal(2.05)}>
+          <span>{INVITATION.hero.groomFamily.replace('أهل العريس: ', '')}</span>
+          <i>و</i>
+          <span>{INVITATION.hero.brideFamily.replace('أهل العروس: ', '')}</span>
+        </motion.div>
+        <motion.div className="entrance-hero__invitation" {...reveal(2.75)}>
+          <span>في يوم مبارك وحدث مبارك</span>
+          <span>نتشرف بدعوتكم لمشاركتنا فرحتنا</span>
+          <span>بإشهار خطوبة</span>
+        </motion.div>
+        <motion.h1 id="hero-names" {...reveal(3.55)}>{INVITATION.hero.names}</motion.h1>
+      </div>
+      <img className="entrance-hero__stairs" src="/assets/yazan-theme/stairs.jpg" alt="" aria-hidden="true" />
+      <div className="entrance-hero__doors" aria-hidden={done || undefined}>
+        <div className="entrance-hero__door entrance-hero__door--left"><img src="/assets/yazan-theme/door-right.jpg" alt="" /></div>
+        <div className="entrance-hero__door entrance-hero__door--right"><img src="/assets/yazan-theme/door-left.jpg" alt="" /></div>
+      </div>
+      <button className="entrance-hero__open" type="button" onClick={onOpen} disabled={open} aria-label={INVITATION.gate.lockLabel}><span>{INVITATION.gate.hint}</span></button>
     </section>
   );
 }

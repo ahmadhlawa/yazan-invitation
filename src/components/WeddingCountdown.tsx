@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import { INVITATION } from '../invitation.config';
 import { Reveal } from './Reveal';
-import { GoldDivider } from './ThemeArt';
+import { SectionDivider } from './SectionDivider';
 
 /**
  * لحظة الزفاف بإزاحة زمنية صريحة (+03:00) — تُقرأ مرة واحدة من الإعدادات.
@@ -116,7 +116,7 @@ export function WeddingCountdown() {
         <div className="countdown-story__wash">
           <p className="story-eyebrow">نعدّ الأيام شوقاً</p>
           <h2>{heading}</h2>
-          <GoldDivider />
+          <SectionDivider />
           <CountdownBody />
         </div>
       </Reveal>

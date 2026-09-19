@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { INVITATION, type InvitationEvent } from '../invitation.config';
 import { EventGlyph } from '../ornaments/EventIcons';
 import { VIEWPORT } from './Reveal';
-import { GoldDivider } from './ThemeArt';
+import { SectionDivider } from './SectionDivider';
 
 function EventScene({ event, index }: { event: InvitationEvent; index: number }) {
   const reduced = useReducedMotion();
@@ -26,7 +26,7 @@ export function EventsTimeline() {
     <section aria-labelledby="events-heading" className="events-story">
       <p className="story-eyebrow">تفاصيل فرحتنا</p>
       <h2 id="events-heading">{INVITATION.eventsHeading}</h2>
-      <GoldDivider />
+      <SectionDivider />
       <ul className="events-story__list">{INVITATION.events.map((event, i) => <EventScene key={event.id} event={event} index={i} />)}</ul>
     </section>
   );
