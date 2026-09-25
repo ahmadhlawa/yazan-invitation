@@ -29,7 +29,7 @@ export const INVITATION = {
   eventsHeading: 'تفاصيل المناسبة',
   events: [{
     id: 'engagement', icon: 'rings', weekday: 'الجمعة', date: '2 / 10 / 2026', title: 'إشهار خطوبة يزن واستبرق',
-    place: 'وادي الهريّة – دخلة مصنع الأمل – منزل والد العروس', details: ['الساعة 5:30 مساءً'], primary: true,
+    place: 'وادي الهريّة – دخلة مصنع الأمل – منزل والد العروس', details: ['الساعة الخامسة والنصف مساءاً (5:30 PM)'], primary: true,
   }] satisfies InvitationEvent[] as InvitationEvent[],
   calendar: {
     year: 2026, month: 10, monthName: 'أكتوبر', monthLabel: 'أكتوبر 2026', softHighlight: [], mainDay: 2,
